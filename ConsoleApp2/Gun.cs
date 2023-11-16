@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleApp2
@@ -41,10 +42,10 @@ namespace ConsoleApp2
                 Print();
             }
         }
-        public async void GunFire()
+        public void GunFire(Target target)
         {
-            await bullet.MovedBullet(this.x, this.y);
-            
+           Thread thread = new Thread( () => bullet.MovedBullet(x, y, target));
+           thread.Start();       
         }
     }
 }

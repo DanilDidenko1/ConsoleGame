@@ -13,14 +13,14 @@ namespace ConsoleApp2
         {
             
         }
-        public async Task Fall()
+        public void Fall()
         {
             while (true) 
             {
                 Thread.Sleep(1000);
-                await Task.Run( () => Clear());
+                Clear();
                 y++;
-                await Task.Run( () => Print());
+                Print();
             }
         }
         public void IsCrash()

@@ -24,18 +24,31 @@ namespace ConsoleApp2
             Console.SetCursorPosition(x, y);
             Console.WriteLine(body);
         }
-        public async Task MovedBullet(int x , int y)
+        public void MovedBullet(int x , int y, Target target)
         {
+            this.x = x;
+            this.y = y;
             int start = y;
-            while (y != 0) 
+            while (this.y != 2) 
             {
-                Thread.Sleep(120);
-                y -= 1;
-                if (y + 1 == start) continue;
-                await Task.Run( () => Clear(x, y + 1));
-                await Task.Run( () => Print(x,y));
+                Thread.Sleep(60);
+                this.y -= 1;
+                if (this.y + 1 == start) continue;
+                Clear(this.x, this.y + 1);
+                Print(this.x, this.y);
+                if(IsHit(target)) break;
             }
-            await Task.Run( () => Clear(x, y));
+            Clear(this.x, this.y);
+        }
+        public bool IsHit(Target target)
+        {
+            if (target.x == x && target.y == y)
+            {
+                target.CreateNewTarget();
+
+                return true;
+            };
+            return false;
         }
     }
 }

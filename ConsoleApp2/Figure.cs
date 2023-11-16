@@ -15,7 +15,7 @@ namespace ConsoleApp2
         public Figure(char body)
         {
             Random random = new Random();
-            x = random.Next(1, 50);
+            x = random.Next(1, 20);
             y = 0;
             this.body = body;
         }
